@@ -1,0 +1,58 @@
++-----------------------------------------------------------------------------+
+|                        sqlite_sphere 0.1 for Sqlite3                        |
++-----------------------------------------------------------------------------+
+
+
+This is a port of the pgSphere 1.1.1 library to Sqlite3. Actually, this is a port
+of mysql_sphere to Sqlite3. Ported are all spherical functions but not the spherical 
+index part.
+
+Changes:
+- made UDF calls coherent
+- object wrapping is done using BLOBs that can either be base64 encoded or not
+- due to non extensibility of Sqlite3 SQL syntax, no operators are available for
+  sphere objects and everything needs to be done using direct UDF function calls
+
+No documentation is available yet, but this will be available in the future.
+
+To install
+----------
+
+1) Make sure, the sqlite developer library is installed in your system.
+
+2) mkdir build
+   cd build
+
+3) cmake ..
+
+4) make
+
+5) copy the dynamical library (libsqlitesphere.so or similar) to a convenient place
+
+6) start sqlite3
+
+7) in order to use sqlite_sphere run in sqlite3:
+   .load ./libsqlitesphere.so
+
+   according to the place you have put the dynamical library
+
+How to use
+----------
+
+See the documentation of mysql_sphere under
+
+         http://escience.aip.de/mysql-sphere
+
+since the libraries are equally used.
+
+Exception:
+
+sstr(object)
+
+Optional:
+sstr(object, outputType)
+sstr(object, outputType, precission)
+
+Defaults:
+outputType = RAD
+precission = 10
