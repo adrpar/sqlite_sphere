@@ -7,8 +7,6 @@
 #include "serialiser.h"
 #include "serialiser_helper.h"
 
-#define SQLITE_SERVER 1
-
 size_t SERIAL_LEN_SPOINT = 8 + sizeof(SPoint) + 1;    //8 for id tag and rest for data + 1 for \0
 size_t SERIAL_LEN_SEULER = 8 + sizeof(SEuler) + 1;    //8 for id tag and rest for data + 1 for \0
 size_t SERIAL_LEN_SCIRCLE = 8 + sizeof(SCircle) + 1;    //8 for id tag and rest for data + 1 for \0

@@ -20,18 +20,20 @@ To install
 
 1) Make sure, the sqlite developer library is installed in your system.
 
-2) mkdir build
+2) If needed, alter CMakeLists.txt (e.g. to disable base64 serialisation)
+
+3) mkdir build
    cd build
 
-3) cmake ..
+4) cmake ..
 
-4) make
+5) make
 
-5) copy the dynamical library (libsqlitesphere.so or similar) to a convenient place
+6) copy the dynamical library (libsqlitesphere.so or similar) to a convenient place
 
-6) start sqlite3
+7) start sqlite3
 
-7) in order to use sqlite_sphere run in sqlite3:
+8) in order to use sqlite_sphere run in sqlite3:
    .load ./libsqlitesphere.so
 
    according to the place you have put the dynamical library

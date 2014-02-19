@@ -12,6 +12,13 @@ else()
 	message( FATAL_ERROR "SQlite3 developer files not found!")
 endif()
 
+#####################################################################
+## Uncomment the following if you don't want to serialise objects
+## with base64
+#####################################################################
+
+#add_definitions(-DBASE64ENCODE 0)
+
 set(CMAKE_BUILD_TYPE Release)
 SET(BUILD_SHARED_LIBS ON)
 
