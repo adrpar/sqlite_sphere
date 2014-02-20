@@ -45,7 +45,7 @@ See the documentation of mysql_sphere under
 
          http://escience.aip.de/mysql-sphere
 
-since the libraries are equally used.
+since the libraries are used in the same way.
 
 Exception:
 
@@ -53,8 +53,8 @@ sstr(object)
 
 Optional:
 sstr(object, outputType)
-sstr(object, outputType, precission)
+sstr(object, outputType, precision)
 
 Defaults:
 outputType = RAD
-precission = 10
+precision = 10

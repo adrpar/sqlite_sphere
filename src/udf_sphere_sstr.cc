@@ -20,19 +20,19 @@ static TYPELIB outputModes = { 4, NULL, outputTypes, NULL };
 
 //supporting sstr(SPoint), sstr(SCircle), sstr(SLine), sstr(SEuler), sstr(SPoly),
 //   sstr(SPath), sstr(SEllipse), sstr(SBox)
-//optional parameters: type, precission
+//optional parameters: type, precision
 void sstrFunc(sqlite3_context *context, int argc, sqlite3_value **argv) {
 	char * result = NULL;
 	unsigned long outType = OUTPUT_RAD;
-	unsigned int precission = 10;
+	unsigned int precision = 10;
 
 	assert( argc==1 || argc==2 || argc==3 );
 
 	if(argc==3) {
-		SQLITE_UDF_CHK_PARAM_INT( 2, precission, "sstr(object, type, precission) requires precission to be an integer number." );
+		SQLITE_UDF_CHK_PARAM_INT( 2, precision, "sstr(object, type, precision) requires precision to be an integer number." );
 
-		if(precission <= 0) {
-			sqlite3_result_error(context, "sstr(object, type, precission) requires precission to larger than zero.", 666);
+		if(precision <= 0) {
+			sqlite3_result_error(context, "sstr(object, type, precision) requires precision to larger than zero.", 666);
 			return;
 		}
 	}
@@ -41,12 +41,12 @@ void sstrFunc(sqlite3_context *context, int argc, sqlite3_value **argv) {
 		char * charType = NULL;
 		int charTypeLen = 0;
 
-		SQLITE_UDF_CHK_PARAM_CHAR( 1, charType, charTypeLen, "sstr(object, type, precission) requires type to be a string." );
+		SQLITE_UDF_CHK_PARAM_CHAR( 1, charType, charTypeLen, "sstr(object, type, precision) requires type to be a string." );
 
 		//checking validity
 		//check if value is sane
 		if(charTypeLen != 3) {
-			sqlite3_result_error(context, "sstr(object, type) or sstr(object, type, precission) invalid type string", 666);
+			sqlite3_result_error(context, "sstr(object, type) or sstr(object, type, precision) invalid type string", 666);
 			return;
 		}
 
@@ -61,7 +61,7 @@ void sstrFunc(sqlite3_context *context, int argc, sqlite3_value **argv) {
 		}
 		
 		if(found != true) {
-			sqlite3_result_error(context, "sstr(object, type) or sstr(object, type, precission) legal types are: RAD, DEG, DMS, HMS", 666);
+			sqlite3_result_error(context, "sstr(object, type) or sstr(object, type, precision) legal types are: RAD, DEG, DMS, HMS", 666);
 			return;
 		}
 	}
@@ -84,28 +84,28 @@ void sstrFunc(sqlite3_context *context, int argc, sqlite3_value **argv) {
 
 		switch(decodedDataType) {
 			case SQLITE_SPHERE_POINT:
-				result = spherepoint_out((SPoint*) objData, outType, precission);
+				result = spherepoint_out((SPoint*) objData, outType, precision);
 				break;
 			case SQLITE_SPHERE_CIRCLE:
-				result = spherecircle_out((SCircle*) objData, outType, precission);
+				result = spherecircle_out((SCircle*) objData, outType, precision);
 				break;
 			case SQLITE_SPHERE_LINE:
-				result = sphereline_out((SLine*) objData, outType, precission);
+				result = sphereline_out((SLine*) objData, outType, precision);
 				break;
 			case SQLITE_SPHERE_EULER:
-				result = spheretrans_out((SEuler*) objData, outType, precission);
+				result = spheretrans_out((SEuler*) objData, outType, precision);
 				break;
 			case SQLITE_SPHERE_POLYGON:
-				result = spherepoly_out((SPoly*) objData, outType, precission);
+				result = spherepoly_out((SPoly*) objData, outType, precision);
 				break;
 			case SQLITE_SPHERE_PATH:
-				result = spherepath_out((SPath*) objData, outType, precission);
+				result = spherepath_out((SPath*) objData, outType, precision);
 				break;
 			case SQLITE_SPHERE_ELLIPSE:
-				result = sphereellipse_out((SEllipse*) objData, outType, precission);
+				result = sphereellipse_out((SEllipse*) objData, outType, precision);
 				break;
 			case SQLITE_SPHERE_BOX:
-				result = spherebox_out((SBox*) objData, outType, precission);
+				result = spherebox_out((SBox*) objData, outType, precision);
 				break;
 		}
 
