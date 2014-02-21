@@ -17,7 +17,7 @@ endif()
 ## with base64
 #####################################################################
 
-#add_definitions(-DBASE64ENCODE 0)
+#add_definitions(-DBASE64ENCODE=0)
 
 set(CMAKE_BUILD_TYPE Release)
 SET(BUILD_SHARED_LIBS ON)
